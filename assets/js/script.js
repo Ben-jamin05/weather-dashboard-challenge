@@ -42,8 +42,8 @@ searchbtn.addEventListener('click', function (event) {
 const cityBtn = document.querySelector('#cityInList');
 
 cityBtn.addEventListener('click', function (){
-    currentDaySearch(cityBtn.value, APIKey);
-    fiveDaySearch(cityBtn.value, APIKey)
+    currentDaySearch(cityBtn.innerHTML, APIKey);
+    fiveDaySearch(cityBtn.innerHTML, APIKey)
 });
 */
 
@@ -82,14 +82,32 @@ function currentDaySearch(city, key) {
         return response.json();
     })
     .then(function(data) {
+        temperature.textContent = 'Temp: ';
+        wind.textContent = 'Wind: ';
+        humid.textContent = 'Humidity: ';
+
         let previousCities = localStorage.getItem('cities');
         let cities = [];
         if (previousCities !== null && previousCities !== undefined) {
             cities = JSON.parse(previousCities);
         }
+
+        if (cities.includes(cityName)){
+            cityName = titleCase(city);
+            cities.push(cityName);
+            localStorage.setItem('cities', JSON.stringify(cities));
+
+            displayCityName.textContent = data.name;
+            temperature.textContent += data.main.temp + '°F';
+            wind.textContent += data.wind.speed + ' MPH';
+            humid.textContent += data.main.humidity + '%';
+            
+        } else{
+
         cityName = titleCase(city);
         cities.push(cityName);
         localStorage.setItem('cities', JSON.stringify(cities));
+
 
         let newLI = document.createElement('li');
         let cityBtn = document.createElement('button');
@@ -103,6 +121,8 @@ function currentDaySearch(city, key) {
         temperature.textContent += data.main.temp + '°F';
         wind.textContent += data.wind.speed + ' MPH';
         humid.textContent += data.main.humidity + '%';
+
+        }
 
     })
     .catch(function(error) {
@@ -154,4 +174,11 @@ function fiveDaySearch(city, key) {
 
 document.addEventListener('DOMContentLoaded', function() {
     renderCityList();
+
+    cityList.addEventListener('click', function(event) {
+        if (event.target && event.target.nodeName == 'BUTTON' && event.target.id == 'cityInList') {
+            currentDaySearch(event.target.textContent, APIKey);
+            fiveDaySearch(event.target.textContent, APIKey);
+        }
+    });
 });
