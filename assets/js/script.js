@@ -38,15 +38,6 @@ searchbtn.addEventListener('click', function (event) {
     }
 });
 
-/*
-const cityBtn = document.querySelector('#cityInList');
-
-cityBtn.addEventListener('click', function (){
-    currentDaySearch(cityBtn.innerHTML, APIKey);
-    fiveDaySearch(cityBtn.innerHTML, APIKey)
-});
-*/
-
 
 function renderCityList() {
     let previousCities = localStorage.getItem('cities');
@@ -57,8 +48,10 @@ function renderCityList() {
     cityList.innerHTML = '';
     cities.forEach(function(cityName) {
         let newLI = document.createElement('li');
-        newLI.setAttribute('id', 'cityInList');
-        newLI.textContent = cityName;
+        let cityBtn = document.createElement('button');
+        cityBtn.setAttribute('id', 'cityInList');
+        cityBtn.textContent = cityName;
+        newLI.appendChild(cityBtn);
         cityList.appendChild(newLI);
     })
 }
@@ -71,8 +64,6 @@ const humid = document.querySelector('#humid');
 
 function currentDaySearch(city, key) {
     const searchedCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`
-    
-
 
     fetch(searchedCity)
     .then(function(response) {
@@ -93,9 +84,6 @@ function currentDaySearch(city, key) {
         }
 
         if (cities.includes(cityName)){
-            cityName = titleCase(city);
-            cities.push(cityName);
-            localStorage.setItem('cities', JSON.stringify(cities));
 
             displayCityName.textContent = data.name;
             temperature.textContent += data.main.temp + '°F';
@@ -107,7 +95,6 @@ function currentDaySearch(city, key) {
         cityName = titleCase(city);
         cities.push(cityName);
         localStorage.setItem('cities', JSON.stringify(cities));
-
 
         let newLI = document.createElement('li');
         let cityBtn = document.createElement('button');

@@ -14,7 +14,7 @@ Once you have navigated to the website it should look something like [This]().
 
 ## Credits 
 
-me
+me, openweathermap api
 
 ## License
 

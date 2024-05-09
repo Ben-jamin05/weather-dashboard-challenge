@@ -54,7 +54,9 @@ h3, p{
 }
 
 #cityInList{
-    
+    padding: 10px;
+    margin: 10px;
+    background-color:  rgb(218, 237, 238);
 }
 
 .forecastCards{
