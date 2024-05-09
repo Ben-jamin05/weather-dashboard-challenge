@@ -46,9 +46,23 @@ form{
 
 .city{
     border: 2px solid black;
-    width: 100%;
+    width: 85%;
 }
 
 h3, p{
     margin-left: 5px;
+}
+
+#cityInList{
+    
+}
+
+.forecastCards{
+    display: flex;
+}
+.weatherCard{
+    background-color: rgb(204, 204, 255);
+    border: 2px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
 }

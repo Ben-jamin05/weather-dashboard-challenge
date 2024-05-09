@@ -31,20 +31,22 @@ searchbtn.addEventListener('click', function (event) {
         city.value = '';
         return;
     } else {
-        /*
-        cities.push(cityName);
-        localStorage.setItem('cities', JSON.stringify(cities));
-        console.log(cities);
-        let newLI = document.createElement('li');
-        newLI.setAttribute('id', 'cityInList');
-        newLI.textContent = cityName;
-        cityList.appendChild(newLI);
-        */
         event.preventDefault();
         city.value = '';
         currentDaySearch(cityName, APIKey);
+        fiveDaySearch(cityName, APIKey)
     }
 });
+
+/*
+const cityBtn = document.querySelector('#cityInList');
+
+cityBtn.addEventListener('click', function (){
+    currentDaySearch(cityBtn.value, APIKey);
+    fiveDaySearch(cityBtn.value, APIKey)
+});
+*/
+
 
 function renderCityList() {
     let previousCities = localStorage.getItem('cities');
@@ -90,8 +92,10 @@ function currentDaySearch(city, key) {
         localStorage.setItem('cities', JSON.stringify(cities));
 
         let newLI = document.createElement('li');
-        newLI.setAttribute('id', 'cityInList');
-        newLI.textContent = cityName;
+        let cityBtn = document.createElement('button');
+        cityBtn.setAttribute('id', 'cityInList');
+        cityBtn.textContent = cityName;
+        newLI.appendChild(cityBtn);
         cityList.appendChild(newLI);
         console.log(data);
         
@@ -106,7 +110,7 @@ function currentDaySearch(city, key) {
     });
 }
 
-const forcastCards = document.querySelector('.forcastCards')
+const forecastCards = document.querySelector('.forecastCards')
 
 function fiveDaySearch(city, key) {
     const searchedCity = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${key}`
@@ -119,12 +123,34 @@ function fiveDaySearch(city, key) {
         return response.json();
     })
     .then(function(data) {
+        forecastCards.innerHTML = '';
 
+        const forecastData = data.list.filter((item, index) => index % 8 === 0).slice(0, 5);
+
+        forecastData.forEach(dayData => {
+            const date = new Date(dayData.dt * 1000);
+            const temperature = dayData.main.temp;
+            const windSpeed = dayData.wind.speed;
+            const humidity = dayData.main.humidity;
+
+            const card = document.createElement('div');
+            card.setAttribute('class', 'weatherCard');
+
+            card.innerHTML = `
+                <h4>${date.toDateString()}</h4>
+                <p>Temperature: ${temperature}°F</p>
+                <p>Wind: ${windSpeed} MPH</p>
+                <p>Humidity: ${humidity}%</p>
+            `;
+
+            forecastCards.appendChild(card);
+        });
     })
     .catch(function(error) {
         console.error('There was a problem with the fetch operation:', error);
     });
 }
+
 
 document.addEventListener('DOMContentLoaded', function() {
     renderCityList();
