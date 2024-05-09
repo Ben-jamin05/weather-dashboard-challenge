@@ -1,0 +1,54 @@
+header{
+    background-color: rgb(89, 89, 251);
+    color: white;
+    height: 50px;
+    display: flex;
+}
+h1{
+    align-content: center;
+    padding-left: 700px;
+}
+.main{
+    display: flex;
+}
+
+.left{
+    flex-basis: 20%;
+}
+.right{
+    flex-basis: 78.5%;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+label{
+    font-size: 30px;
+}
+
+#citySearch{
+    width: 95%;
+    margin-top: 20px;
+    padding: 5px;
+    font-size: 15px;
+}
+#search{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+form{
+    border-bottom: 2px solid lightgrey;
+}
+
+.cityList{
+    list-style: none;
+}
+
+.city{
+    border: 2px solid black;
+    width: 100%;
+}
+
+h3, p{
+    margin-left: 5px;
+}
