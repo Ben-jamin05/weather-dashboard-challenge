@@ -32,3 +32,22 @@ searchbtn.addEventListener('click', function (event) {
         city.value = '';
     }
 });
+
+function renderCityList() {
+    let previousCities = localStorage.getItem('cities');
+    let cities = [];
+    if (previousCities !== null && previousCities !== undefined) {
+        cities = JSON.parse(previousCities);
+    }
+    cityList.innerHTML = '';
+    cities.forEach(function(cityName) {
+        let newLI = document.createElement('li');
+        newLI.setAttribute('id', 'cityInList');
+        newLI.textContent = cityName;
+        cityList.appendChild(newLI);
+    })
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    renderCityList();
+});
