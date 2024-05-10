@@ -6,7 +6,7 @@ My motivation for this project was to make a weather page to display the current
 
 ## Installation
 
-You can either just go to the website from the Github repository or via this [link]() or clone the code from the repository. 
+You can either just go to the website from the Github repository or via this [link](https://ben-jamin05.github.io/weather-dashboard-challenge/) or clone the code from the repository. 
 
 ## Usage
 
@@ -44,4 +44,4 @@ SOFTWARE.
 
 ## Link
 
-Link to the website if you missed it earlier []()
+Link to the website if you missed it earlier [https://ben-jamin05.github.io/weather-dashboard-challenge/](https://ben-jamin05.github.io/weather-dashboard-challenge/)
