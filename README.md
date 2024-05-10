@@ -2,7 +2,7 @@
 
 ## Description
 
-My motivation for this project was to make a . This consists creating a . I accomplished this with my skills in   and have furthered my skills in all of these areas. 
+My motivation for this project was to make a weather page to display the current day and five day forecast by looking up specific cities by name. This consists creating a search function with a form with an input field and search button, then adding those searches cities to a list below the form as buttons to quick search the same city again. Finally displaying all of the information dynamically from the call to the openweathermap api. I accomplished this with my skills in js, html and css along with my new api knowledge and have furthered my skills in js and api's. 
 
 ## Installation
 
@@ -10,7 +10,7 @@ You can either just go to the website from the Github repository or via this [li
 
 ## Usage
 
-Once you have navigated to the website it should look something like [This]().  
+Once you have navigated to the website it should look something like [This](./assets/images/Initial%20Look.png). You will see a search box where you can enter the name of a city. Keep in mind it must be a city name spelled correctly, if you search a city for a second time it will prompt you to just click the button on the side with the city name instead. Once you have searched your city it will look something like [This](./assets/images/First%20City.png). Once you have looked at the weather and want to look at another city you can search for another one and then your page will look something like [This](./assets/images/Multiple%20Cities.png). You can have as many cities as you would like and switch between them with the buttons on the side freely.
 
 ## Credits 
 
