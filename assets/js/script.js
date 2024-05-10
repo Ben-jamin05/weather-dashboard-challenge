@@ -45,6 +45,8 @@ function renderCityList() {
     if (previousCities !== null && previousCities !== undefined) {
         cities = JSON.parse(previousCities);
     }
+    cities = removeDuplicateCities(cities);
+
     cityList.innerHTML = '';
     cities.forEach(function(cityName) {
         let newLI = document.createElement('li');
@@ -53,6 +55,7 @@ function renderCityList() {
         cityBtn.textContent = cityName;
         newLI.appendChild(cityBtn);
         cityList.appendChild(newLI);
+        
     })
 }
 
@@ -136,6 +139,7 @@ function fiveDaySearch(city, key) {
 
         forecastData.forEach(dayData => {
             const date = new Date(dayData.dt * 1000);
+            const icon = dayData.weather[0].icon;
             const temperature = dayData.main.temp;
             const windSpeed = dayData.wind.speed;
             const humidity = dayData.main.humidity;
@@ -145,6 +149,7 @@ function fiveDaySearch(city, key) {
 
             card.innerHTML = `
                 <h4>${date.toDateString()}</h4>
+                <img src="https://openweathermap.org/img/w/${icon}.png">
                 <p>Temperature: ${temperature}°F</p>
                 <p>Wind: ${windSpeed} MPH</p>
                 <p>Humidity: ${humidity}%</p>
@@ -158,6 +163,10 @@ function fiveDaySearch(city, key) {
     });
 }
 
+function removeDuplicateCities(cities) {
+    return cities.filter((item, index) => cities.indexOf(item) === index);
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
     renderCityList();
@@ -168,4 +177,5 @@ document.addEventListener('DOMContentLoaded', function() {
             fiveDaySearch(event.target.textContent, APIKey);
         }
     });
+    
 });
